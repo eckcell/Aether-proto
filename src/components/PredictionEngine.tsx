@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ElementalProfile } from '../utils/elementalLogic';
+import { calculateSoulSeed } from '../utils/gematria';
 
 interface PredictionEngineProps {
   profile: ElementalProfile;
+  userName: string;
   onComplete: (prediction: string) => void;
 }
 
@@ -13,14 +15,18 @@ const PredictionEngine: React.FC<PredictionEngineProps> = ({ profile, onComplete
   const [stage, setStage] = useState<'constellation' | 'revealing' | 'complete'>('constellation');
   const [revealedChars, setRevealedChars] = useState<string[]>([]);
   
-  // Deterministic 4D calculation
+  // Deterministic 4D calculation incorporating Soul Seed
   const prediction = useMemo(() => {
+    const soulSeed = calculateSoulSeed(userName);
     const now = new Date();
     const hour = now.getHours();
     const minute = now.getMinutes();
-    const rawNumber = (profile.numericWeight * hour + minute) % 10000;
+    
+    // Core formula with Gematria resonance as an offset
+    // soulSeed (1-9) acts as a unique vibrational shift
+    const rawNumber = (profile.numericWeight * hour + minute + (soulSeed * 111)) % 10000;
     return rawNumber.toString().padStart(4, '0');
-  }, [profile.numericWeight]);
+  }, [profile.numericWeight, userName]);
 
   useEffect(() => {
     // Stage 1: Constellation Loading

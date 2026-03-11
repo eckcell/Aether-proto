@@ -15,6 +15,7 @@ const YEARS = Array.from({ length: 100 }, (_, i) => 2026 - i);
 const BREATH_EASE = [0.4, 0, 0.2, 1] as const;
 
 interface CosmicData {
+  name: string;
   day: number;
   month: number;
   year: number;
@@ -26,6 +27,7 @@ const App: React.FC = () => {
   const [view, setView] = useState<'landing' | 'predicting' | 'synced'>('landing');
   const [prediction, setPrediction] = useState<string>('');
   const [data, setData] = useState<CosmicData>({
+    name: '',
     day: 11,
     month: 2,
     year: 1995,
@@ -113,17 +115,31 @@ const App: React.FC = () => {
                   onPrev={() => updateBirthData('hour', -1, 23)}
                 />
               </div>
-              
-              <div className="glass px-5 py-2 sm:px-8 sm:py-5 rounded-[1rem] sm:rounded-[2rem] w-full max-w-[280px] sm:max-w-none text-center border-cosmic-gold/10 mb-4 sm:mb-10 group">
-                <span className="text-cosmic-gold/60 text-[7px] sm:text-[9px] uppercase tracking-[0.3em] block mb-0.5 font-medium">Location</span>
-                <input 
-                  type="text"
-                  value={data.city}
-                  onChange={(e) => setData(d => ({ ...d, city: e.target.value }))}
-                  className="bg-transparent border-none outline-none text-cosmic-gold text-base sm:text-2xl font-normal tracking-wide w-full text-center placeholder:text-cosmic-gold/20"
-                  placeholder="Enter Location..."
-                />
-                <div className="h-[1px] w-0 group-focus-within:w-1/2 transition-all duration-1000 bg-cosmic-gold/30 mx-auto mt-0.5" />
+
+              <div className="w-full flex flex-col items-center gap-3 mb-4 sm:mb-8">
+                <div className="glass px-5 py-2 sm:px-8 sm:py-5 rounded-[1rem] sm:rounded-[2rem] w-full max-w-[280px] sm:max-w-none text-center border-cosmic-gold/10 group">
+                  <span className="text-cosmic-gold/60 text-[7px] sm:text-[9px] uppercase tracking-[0.3em] block mb-0.5 font-medium">Vibrational Name</span>
+                  <input 
+                    type="text"
+                    value={data.name}
+                    onChange={(e) => setData(d => ({ ...d, name: e.target.value }))}
+                    className="bg-transparent border-none outline-none text-cosmic-gold text-base sm:text-2xl font-normal tracking-wide w-full text-center placeholder:text-cosmic-gold/20"
+                    placeholder="Enter Name..."
+                  />
+                  <div className="h-[1px] w-0 group-focus-within:w-1/2 transition-all duration-1000 bg-cosmic-gold/30 mx-auto mt-0.5" />
+                </div>
+                
+                <div className="glass px-5 py-2 sm:px-8 sm:py-5 rounded-[1rem] sm:rounded-[2rem] w-full max-w-[280px] sm:max-w-none text-center border-cosmic-gold/10 group">
+                  <span className="text-cosmic-gold/60 text-[7px] sm:text-[9px] uppercase tracking-[0.3em] block mb-0.5 font-medium">Location</span>
+                  <input 
+                    type="text"
+                    value={data.city}
+                    onChange={(e) => setData(d => ({ ...d, city: e.target.value }))}
+                    className="bg-transparent border-none outline-none text-cosmic-gold text-base sm:text-2xl font-normal tracking-wide w-full text-center placeholder:text-cosmic-gold/20"
+                    placeholder="Enter Location..."
+                  />
+                  <div className="h-[1px] w-0 group-focus-within:w-1/2 transition-all duration-1000 bg-cosmic-gold/30 mx-auto mt-0.5" />
+                </div>
               </div>
 
               <SyncButton onClick={handleSync} />
@@ -132,6 +148,7 @@ const App: React.FC = () => {
             <PredictionEngine 
               key="predicting"
               profile={natalElement} 
+              userName={data.name}
               onComplete={handlePredictionComplete} 
             />
           ) : (
