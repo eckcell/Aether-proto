@@ -64,10 +64,10 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="relative h-[100svh] w-full flex flex-col items-center justify-start overflow-hidden font-display tracking-wider p-4 sm:p-6">
+    <div className="relative min-h-[100svh] w-full flex flex-col items-center overflow-x-hidden font-display tracking-wider p-4 sm:p-6">
       <NebulaBackground />
 
-      <main className="relative z-10 w-full max-w-lg flex flex-col items-center pt-8 sm:pt-12 pb-4 transition-all duration-1000 ease-out">
+      <main className="relative z-10 w-full max-w-lg flex flex-col items-center pt-4 sm:pt-8 pb-12 transition-all duration-1000 ease-out">
         <AnimatePresence mode="wait">
           {view === 'landing' ? (
             <motion.div
@@ -114,14 +114,14 @@ const App: React.FC = () => {
                 />
               </div>
               
-              <div className="glass px-5 py-3 sm:px-8 sm:py-5 rounded-[1.2rem] sm:rounded-[2rem] w-full text-center border-cosmic-gold/10 mb-6 sm:mb-10 group">
-                <span className="text-cosmic-gold/60 text-[8px] sm:text-[9px] uppercase tracking-[0.3em] block mb-1 font-medium">Location</span>
+              <div className="glass px-5 py-2 sm:px-8 sm:py-5 rounded-[1rem] sm:rounded-[2rem] w-full max-w-[280px] sm:max-w-none text-center border-cosmic-gold/10 mb-6 sm:mb-10 group">
+                <span className="text-cosmic-gold/60 text-[7px] sm:text-[9px] uppercase tracking-[0.3em] block mb-0.5 font-medium">Location</span>
                 <input 
                   type="text"
                   value={data.city}
                   onChange={(e) => setData(d => ({ ...d, city: e.target.value }))}
-                  className="bg-transparent border-none outline-none text-cosmic-gold text-lg sm:text-2xl font-normal tracking-wide w-full text-center placeholder:text-cosmic-gold/20"
-                  placeholder="Enter City..."
+                  className="bg-transparent border-none outline-none text-cosmic-gold text-base sm:text-2xl font-normal tracking-wide w-full text-center placeholder:text-cosmic-gold/20"
+                  placeholder="City..."
                 />
                 <div className="h-[1px] w-0 group-focus-within:w-1/2 transition-all duration-1000 bg-cosmic-gold/30 mx-auto mt-1" />
               </div>
