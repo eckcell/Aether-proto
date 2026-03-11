@@ -117,14 +117,14 @@ const App: React.FC = () => {
                 />
               </div>
 
-              <div className="w-full flex flex-col items-center gap-3 mb-4 sm:mb-8">
+              <div className="w-full flex flex-col items-center gap-2 mb-3 sm:mb-8">
                 <SacredNameInput 
                   value={data.name}
                   onChange={(val) => setData(d => ({ ...d, name: val }))}
                   placeholder="Enter Name..."
                 />
                 
-                <div className="glass px-5 py-2 sm:px-8 sm:py-5 rounded-[1rem] sm:rounded-[2rem] w-full max-w-[280px] sm:max-w-none text-center border-cosmic-gold/10 group">
+                <div className="glass px-5 py-2 sm:px-8 sm:py-5 rounded-[1rem] sm:rounded-[2rem] w-full max-w-[280px] sm:max-w-none text-center border-cosmic-gold/10 group h-[64px] sm:h-[100px] flex flex-col justify-center">
                   <span className="text-cosmic-gold/60 text-[7px] sm:text-[9px] uppercase tracking-[0.3em] block mb-0.5 font-medium">Location</span>
                   <input 
                     type="text"
