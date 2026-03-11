@@ -28,12 +28,12 @@ const App: React.FC = () => {
   const [view, setView] = useState<'landing' | 'predicting' | 'synced'>('landing');
   const [prediction, setPrediction] = useState<string>('');
   const [data, setData] = useState<CosmicData>({
-    name: '',
+    name: 'Dragon',
     day: 11,
     month: 2,
     year: 1995,
     hour: 12,
-    city: '',
+    city: 'Celestial Plain',
   });
 
   const natalElement = useMemo(() => getBirthElement(data.year), [data.year]);

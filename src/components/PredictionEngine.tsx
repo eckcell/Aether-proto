@@ -11,7 +11,7 @@ interface PredictionEngineProps {
 
 const BREATH_EASE = [0.4, 0, 0.2, 1] as const;
 
-const PredictionEngine: React.FC<PredictionEngineProps> = ({ profile, onComplete }) => {
+const PredictionEngine: React.FC<PredictionEngineProps> = ({ profile, userName, onComplete }) => {
   const [stage, setStage] = useState<'constellation' | 'revealing' | 'complete'>('constellation');
   const [revealedChars, setRevealedChars] = useState<string[]>([]);
   
