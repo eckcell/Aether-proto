@@ -12,7 +12,7 @@ const SyncButton: React.FC<SyncButtonProps> = ({ onClick }) => {
   return (
     <motion.button
       onClick={onClick}
-      className="relative group px-12 py-5 rounded-full glass-gold overflow-hidden transition-all active:scale-95"
+      className="relative group px-8 py-3.5 sm:px-12 sm:py-5 rounded-full glass-gold overflow-hidden transition-all active:scale-95"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.8, ease: BREATH_EASE }}
