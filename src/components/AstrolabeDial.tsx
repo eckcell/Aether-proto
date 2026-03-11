@@ -25,11 +25,11 @@ const AstrolabeDial: React.FC<AstrolabeDialProps> = ({ label, value, onNext, onP
 
   return (
     <div className="relative flex flex-col items-center justify-center p-1 sm:p-2">
-      <div className="text-cosmic-gold/70 text-[8px] sm:text-[9px] font-display uppercase tracking-[0.3em] mb-1.5 sm:mb-3 font-medium">
+      <div className="text-cosmic-gold/80 text-[10px] sm:text-[11px] font-display uppercase tracking-[0.4em] mb-3 sm:mb-4 font-semibold">
         {label}
       </div>
       
-      <div className="relative w-28 h-28 sm:w-36 sm:h-36 flex items-center justify-center">
+      <div className="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center">
         {/* Outer Glow Ring */}
         <div className="absolute inset-0 rounded-full border border-cosmic-gold/10 glow-sm glass bg-white/[0.01]" />
         
@@ -60,7 +60,7 @@ const AstrolabeDial: React.FC<AstrolabeDialProps> = ({ label, value, onNext, onP
             initial={{ opacity: 0, scale: 0.9, filter: 'blur(5px)' }}
             animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             transition={{ duration: 0.8, ease: BREATH_EASE }}
-            className="text-xl font-normal text-cosmic-gold tracking-tight text-center"
+            className="text-2xl font-normal text-cosmic-gold tracking-tight text-center"
           >
             {value}
           </motion.div>
@@ -68,16 +68,16 @@ const AstrolabeDial: React.FC<AstrolabeDialProps> = ({ label, value, onNext, onP
       </div>
 
       {/* Interaction Controls */}
-      <div className="flex gap-10 mt-2 sm:mt-4">
+      <div className="flex gap-14 mt-4 sm:mt-6">
         <button 
           onClick={handlePrev}
-          className="text-cosmic-gold/40 hover:text-cosmic-gold/80 transition-colors text-xl p-1"
+          className="text-cosmic-gold/50 hover:text-cosmic-gold/90 transition-colors text-2xl p-2"
         >
           †
         </button>
         <button 
           onClick={handleNext}
-          className="text-cosmic-gold/40 hover:text-cosmic-gold/80 transition-colors text-xl p-1"
+          className="text-cosmic-gold/50 hover:text-cosmic-gold/90 transition-colors text-2xl p-2"
         >
           ‡
         </button>

@@ -64,10 +64,10 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="relative h-[100svh] w-full flex flex-col items-center justify-center overflow-hidden font-display tracking-wider p-2 sm:p-4">
+    <div className="relative h-[100svh] w-full flex flex-col items-center justify-start overflow-hidden font-display tracking-wider p-4 sm:p-6">
       <NebulaBackground />
 
-      <main className="relative z-10 w-full max-w-lg flex flex-col items-center py-2 sm:py-4 scale-[0.85] xs:scale-[0.9] sm:scale-100 origin-center transition-transform duration-1000 ease-out">
+      <main className="relative z-10 w-full max-w-lg flex flex-col items-center pt-8 sm:pt-12 pb-4 transition-all duration-1000 ease-out">
         <AnimatePresence mode="wait">
           {view === 'landing' ? (
             <motion.div
@@ -78,30 +78,30 @@ const App: React.FC = () => {
               transition={{ duration: 1.2, ease: BREATH_EASE }}
               className="w-full flex flex-col items-center"
             >
-              <div className="text-center mb-4 sm:mb-8">
-                <h1 className="text-3xl sm:text-5xl font-medium text-cosmic-gold tracking-tight mb-1">
+              <div className="text-center mb-6 sm:mb-10">
+                <h1 className="text-4xl sm:text-5xl font-medium text-cosmic-gold tracking-tight mb-2">
                   Aether
                 </h1>
-                <p className="text-cosmic-gold/60 text-[8px] sm:text-[10px] tracking-[0.5em] uppercase font-medium">
+                <p className="text-cosmic-gold/60 text-[10px] sm:text-[12px] tracking-[0.6em] uppercase font-semibold">
                   Metaphysical Alignment
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-x-2 gap-y-4 sm:gap-y-6 mb-8 sm:mb-12 w-full place-items-center">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-y-10 mb-8 sm:mb-14 w-full place-items-center">
                 <AstrolabeDial 
-                  label="Birth Month" 
+                  label="Month" 
                   value={MONTHS[data.month]} 
                   onNext={() => updateBirthData('month', 1, 11)}
                   onPrev={() => updateBirthData('month', -1, 11)}
                 />
                 <AstrolabeDial 
-                  label="Birth Day" 
+                  label="Day" 
                   value={data.day.toString().padStart(2, '0')} 
                   onNext={() => updateBirthData('day', 1, 31, 1)}
                   onPrev={() => updateBirthData('day', -1, 31, 1)}
                 />
                 <AstrolabeDial 
-                  label="Birth Year" 
+                  label="Year" 
                   value={data.year.toString()} 
                   onNext={() => updateYear(-1)}
                   onPrev={() => updateYear(1)}
