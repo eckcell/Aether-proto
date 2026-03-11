@@ -30,7 +30,7 @@ const App: React.FC = () => {
     month: 2,
     year: 1995,
     hour: 12,
-    city: 'Astraea'
+    city: '',
   });
 
   const natalElement = useMemo(() => getBirthElement(data.year), [data.year]);
@@ -121,7 +121,7 @@ const App: React.FC = () => {
                   value={data.city}
                   onChange={(e) => setData(d => ({ ...d, city: e.target.value }))}
                   className="bg-transparent border-none outline-none text-cosmic-gold text-base sm:text-2xl font-normal tracking-wide w-full text-center placeholder:text-cosmic-gold/20"
-                  placeholder="City..."
+                  placeholder="Enter Location..."
                 />
                 <div className="h-[1px] w-0 group-focus-within:w-1/2 transition-all duration-1000 bg-cosmic-gold/30 mx-auto mt-0.5" />
               </div>
