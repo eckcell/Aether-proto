@@ -29,7 +29,7 @@ const AstrolabeDial: React.FC<AstrolabeDialProps> = ({ label, value, onNext, onP
         {label}
       </div>
       
-      <div className="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center">
+      <div className="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center">
         {/* Outer Glow Ring */}
         <div className="absolute inset-0 rounded-full border border-cosmic-gold/10 glow-sm glass bg-white/[0.01]" />
         
@@ -68,18 +68,18 @@ const AstrolabeDial: React.FC<AstrolabeDialProps> = ({ label, value, onNext, onP
       </div>
 
       {/* Interaction Controls */}
-      <div className="flex gap-14 mt-4 sm:mt-6">
+      <div className="flex gap-12 mt-3 sm:mt-5">
         <button 
           onClick={handlePrev}
-          className="text-cosmic-gold/50 hover:text-cosmic-gold/90 transition-colors text-2xl p-2"
+          className="text-cosmic-gold/60 hover:text-cosmic-gold/90 transition-colors text-2xl p-2 flex items-center justify-center"
         >
-          †
+          <span className="font-light">−</span>
         </button>
         <button 
           onClick={handleNext}
-          className="text-cosmic-gold/50 hover:text-cosmic-gold/90 transition-colors text-2xl p-2"
+          className="text-cosmic-gold/60 hover:text-cosmic-gold/90 transition-colors text-2xl p-2 flex items-center justify-center"
         >
-          ‡
+          <span className="font-light">+</span>
         </button>
       </div>
     </div>

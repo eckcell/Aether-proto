@@ -78,16 +78,16 @@ const App: React.FC = () => {
               transition={{ duration: 1.2, ease: BREATH_EASE }}
               className="w-full flex flex-col items-center"
             >
-              <div className="text-center mb-6 sm:mb-10">
-                <h1 className="text-4xl sm:text-5xl font-medium text-cosmic-gold tracking-tight mb-2">
+              <div className="text-center mb-4 sm:mb-8">
+                <h1 className="text-3xl sm:text-5xl font-medium text-cosmic-gold tracking-tight mb-1">
                   Aether
                 </h1>
-                <p className="text-cosmic-gold/60 text-[10px] sm:text-[12px] tracking-[0.6em] uppercase font-semibold">
+                <p className="text-cosmic-gold/60 text-[9px] sm:text-[12px] tracking-[0.5em] uppercase font-semibold">
                   Metaphysical Alignment
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-y-10 mb-8 sm:mb-14 w-full place-items-center">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:gap-y-10 mb-6 sm:mb-14 w-full place-items-center">
                 <AstrolabeDial 
                   label="Month" 
                   value={MONTHS[data.month]} 
@@ -115,7 +115,7 @@ const App: React.FC = () => {
               </div>
               
               <div className="glass px-5 py-3 sm:px-8 sm:py-5 rounded-[1.2rem] sm:rounded-[2rem] w-full text-center border-cosmic-gold/10 mb-6 sm:mb-10 group">
-                <span className="text-cosmic-gold/60 text-[8px] sm:text-[9px] uppercase tracking-[0.3em] block mb-1.5 font-medium">Location Point</span>
+                <span className="text-cosmic-gold/60 text-[8px] sm:text-[9px] uppercase tracking-[0.3em] block mb-1 font-medium">Location</span>
                 <input 
                   type="text"
                   value={data.city}
@@ -123,7 +123,7 @@ const App: React.FC = () => {
                   className="bg-transparent border-none outline-none text-cosmic-gold text-lg sm:text-2xl font-normal tracking-wide w-full text-center placeholder:text-cosmic-gold/20"
                   placeholder="Enter City..."
                 />
-                <div className="h-[1px] w-0 group-focus-within:w-1/2 transition-all duration-1000 bg-cosmic-gold/30 mx-auto mt-2" />
+                <div className="h-[1px] w-0 group-focus-within:w-1/2 transition-all duration-1000 bg-cosmic-gold/30 mx-auto mt-1" />
               </div>
 
               <SyncButton onClick={handleSync} />
