@@ -24,12 +24,12 @@ const AstrolabeDial: React.FC<AstrolabeDialProps> = ({ label, value, onNext, onP
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center p-2">
-      <div className="text-cosmic-gold/40 text-[9px] font-display uppercase tracking-[0.3em] mb-3">
+    <div className="relative flex flex-col items-center justify-center p-1 sm:p-2">
+      <div className="text-cosmic-gold/40 text-[8px] sm:text-[9px] font-display uppercase tracking-[0.3em] mb-2 sm:mb-3">
         {label}
       </div>
       
-      <div className="relative w-36 h-36 flex items-center justify-center">
+      <div className="relative w-28 h-28 sm:w-36 sm:h-36 flex items-center justify-center">
         {/* Outer Glow Ring */}
         <div className="absolute inset-0 rounded-full border border-cosmic-gold/10 glow-sm glass bg-white/[0.01]" />
         

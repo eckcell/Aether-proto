@@ -64,10 +64,10 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden font-display tracking-wider">
+    <div className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden font-display tracking-wider p-4">
       <NebulaBackground />
 
-      <main className="relative z-10 w-full max-w-lg px-6 flex flex-col items-center">
+      <main className="relative z-10 w-full max-w-lg flex flex-col items-center py-4 md:py-8 lg:py-12 scale-[0.9] sm:scale-100 origin-center transition-transform duration-1000 ease-out">
         <AnimatePresence mode="wait">
           {view === 'landing' ? (
             <motion.div
@@ -78,16 +78,16 @@ const App: React.FC = () => {
               transition={{ duration: 1.2, ease: BREATH_EASE }}
               className="w-full flex flex-col items-center"
             >
-              <div className="text-center mb-10">
-                <h1 className="text-5xl font-light text-cosmic-gold tracking-tight mb-2">
+              <div className="text-center mb-6 sm:mb-10">
+                <h1 className="text-4xl sm:text-5xl font-light text-cosmic-gold tracking-tight mb-2">
                   Aether
                 </h1>
-                <p className="text-cosmic-gold/30 text-[10px] tracking-[0.5em] uppercase">
+                <p className="text-cosmic-gold/30 text-[9px] sm:text-[10px] tracking-[0.5em] uppercase">
                   Metaphysical Alignment
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-x-2 gap-y-6 mb-12 w-full place-items-center">
+              <div className="grid grid-cols-2 gap-x-2 gap-y-4 sm:gap-y-6 mb-8 sm:mb-12 w-full place-items-center">
                 <AstrolabeDial 
                   label="Birth Month" 
                   value={MONTHS[data.month]} 
@@ -114,13 +114,13 @@ const App: React.FC = () => {
                 />
               </div>
               
-              <div className="glass px-8 py-5 rounded-[2rem] w-full text-center border-cosmic-gold/10 mb-12 group">
-                <span className="text-cosmic-gold/30 text-[9px] uppercase tracking-[0.3em] block mb-2">Current Manifestation Point</span>
+              <div className="glass px-6 py-4 sm:px-8 sm:py-5 rounded-[1.5rem] sm:rounded-[2rem] w-full text-center border-cosmic-gold/10 mb-8 sm:mb-12 group">
+                <span className="text-cosmic-gold/30 text-[8px] sm:text-[9px] uppercase tracking-[0.3em] block mb-2">Location Point</span>
                 <input 
                   type="text"
                   value={data.city}
                   onChange={(e) => setData(d => ({ ...d, city: e.target.value }))}
-                  className="bg-transparent border-none outline-none text-cosmic-gold text-2xl font-light tracking-wide w-full text-center placeholder:text-cosmic-gold/10"
+                  className="bg-transparent border-none outline-none text-cosmic-gold text-xl sm:text-2xl font-light tracking-wide w-full text-center placeholder:text-cosmic-gold/10"
                   placeholder="Enter City..."
                 />
                 <div className="h-[1px] w-0 group-focus-within:w-1/2 transition-all duration-1000 bg-cosmic-gold/20 mx-auto mt-2" />
@@ -140,18 +140,20 @@ const App: React.FC = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, ease: BREATH_EASE }}
-              className="flex flex-col items-center w-full"
+              className="flex flex-col items-center w-full max-h-[85vh] overflow-y-auto no-scrollbar pb-10"
             >
-              <ElementalCard 
-                profile={natalElement} 
-                prediction={prediction}
-                onReset={() => setView('landing')} 
-              />
-              <FortuneShare 
-                profile={natalElement} 
-                prediction={prediction} 
-                city={data.city} 
-              />
+              <div className="w-full flex flex-col items-center scale-[0.85] sm:scale-100 origin-top">
+                <ElementalCard 
+                  profile={natalElement} 
+                  prediction={prediction}
+                  onReset={() => setView('landing')} 
+                />
+                <FortuneShare 
+                  profile={natalElement} 
+                  prediction={prediction} 
+                  city={data.city} 
+                />
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
