@@ -6,6 +6,7 @@ import SyncButton from './components/SyncButton';
 import ElementalCard from './components/ElementalCard';
 import PredictionEngine from './components/PredictionEngine';
 import FortuneShare from './components/FortuneShare';
+import SacredNameInput from './components/SacredNameInput';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -117,17 +118,11 @@ const App: React.FC = () => {
               </div>
 
               <div className="w-full flex flex-col items-center gap-3 mb-4 sm:mb-8">
-                <div className="glass px-5 py-2 sm:px-8 sm:py-5 rounded-[1rem] sm:rounded-[2rem] w-full max-w-[280px] sm:max-w-none text-center border-cosmic-gold/10 group">
-                  <span className="text-cosmic-gold/60 text-[7px] sm:text-[9px] uppercase tracking-[0.3em] block mb-0.5 font-medium">Vibrational Name</span>
-                  <input 
-                    type="text"
-                    value={data.name}
-                    onChange={(e) => setData(d => ({ ...d, name: e.target.value }))}
-                    className="bg-transparent border-none outline-none text-cosmic-gold text-base sm:text-2xl font-normal tracking-wide w-full text-center placeholder:text-cosmic-gold/20"
-                    placeholder="Enter Name..."
-                  />
-                  <div className="h-[1px] w-0 group-focus-within:w-1/2 transition-all duration-1000 bg-cosmic-gold/30 mx-auto mt-0.5" />
-                </div>
+                <SacredNameInput 
+                  value={data.name}
+                  onChange={(val) => setData(d => ({ ...d, name: val }))}
+                  placeholder="Enter Name..."
+                />
                 
                 <div className="glass px-5 py-2 sm:px-8 sm:py-5 rounded-[1rem] sm:rounded-[2rem] w-full max-w-[280px] sm:max-w-none text-center border-cosmic-gold/10 group">
                   <span className="text-cosmic-gold/60 text-[7px] sm:text-[9px] uppercase tracking-[0.3em] block mb-0.5 font-medium">Location</span>

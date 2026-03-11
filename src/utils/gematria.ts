@@ -23,6 +23,11 @@ const GEMATRIA_MAP: Record<string, number> = {
   I: 9, R: 9,
 };
 
+export const getCharWeight = (char: string): number => {
+  const upper = char.toUpperCase();
+  return GEMATRIA_MAP[upper] || 0;
+};
+
 /**
  * Calculates the 'Soul Seed' - a single digit (1-9) vibration based on a name.
  * Uses the Pythagorean system and digit reduction.
