@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { toPng } from 'html-to-image';
+import { toJpeg } from 'html-to-image';
 import { Share2, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ElementalProfile } from '../utils/elementalLogic';
@@ -17,13 +17,37 @@ const FortuneShare: React.FC<FortuneShareProps> = ({ profile, prediction, city }
     if (cardRef.current === null) return;
     
     try {
-      const dataUrl = await toPng(cardRef.current, { cacheBust: true });
+      // Optimize size by using JPEG with 0.8 quality
+      const dataUrl = await toJpeg(cardRef.current, { 
+        cacheBust: true,
+        quality: 0.8,
+        backgroundColor: '#0b0e14'
+      });
+
+      // Check if Web Share API is available and can share files
+      if (navigator.share) {
+        // Convert dataUrl to File object
+        const response = await fetch(dataUrl);
+        const blob = await response.blob();
+        const file = new File([blob], `Aether-Fortune-${prediction}.jpg`, { type: 'image/jpeg' });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            title: 'Aether Fortune',
+            text: `My celestial alignment for today is ${prediction}.`,
+            files: [file],
+          });
+          return;
+        }
+      }
+
+      // Fallback to download
       const link = document.createElement('a');
-      link.download = `Aether-Fortune-${prediction}.png`;
+      link.download = `Aether-Fortune-${prediction}.jpg`;
       link.href = dataUrl;
       link.click();
     } catch (err) {
-      console.error('Could not generate image', err);
+      console.error('Could not generate or share image', err);
     }
   };
 

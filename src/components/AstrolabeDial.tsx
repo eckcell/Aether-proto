@@ -6,12 +6,15 @@ interface AstrolabeDialProps {
   value: string;
   onNext: () => void;
   onPrev: () => void;
+  onValueChange?: (value: string) => void;
 }
 
 const BREATH_EASE = [0.4, 0, 0.2, 1] as const;
 
-const AstrolabeDial: React.FC<AstrolabeDialProps> = ({ label, value, onNext, onPrev }) => {
+const AstrolabeDial: React.FC<AstrolabeDialProps> = ({ label, value, onNext, onPrev, onValueChange }) => {
   const [rotation, setRotation] = useState(0);
+  const [isEditing, setIsEditing] = useState(false);
+  const [inputValue, setInputValue] = useState(value);
 
   const handleNext = () => {
     setRotation(prev => prev + 30);
@@ -21,6 +24,29 @@ const AstrolabeDial: React.FC<AstrolabeDialProps> = ({ label, value, onNext, onP
   const handlePrev = () => {
     setRotation(prev => prev - 30);
     onPrev();
+  };
+
+  const handleValueClick = () => {
+    if (onValueChange) {
+      setInputValue(value);
+      setIsEditing(true);
+    }
+  };
+
+  const handleInputBlur = () => {
+    setIsEditing(false);
+    if (inputValue !== value && onValueChange) {
+      onValueChange(inputValue);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleInputBlur();
+    } else if (e.key === 'Escape') {
+      setIsEditing(false);
+      setInputValue(value);
+    }
   };
 
   return (
@@ -54,16 +80,29 @@ const AstrolabeDial: React.FC<AstrolabeDialProps> = ({ label, value, onNext, onP
         </motion.div>
 
         {/* Selected Value */}
-        <div className="z-10 flex flex-col items-center px-4">
-          <motion.div 
-            key={value}
-            initial={{ opacity: 0, scale: 0.9, filter: 'blur(5px)' }}
-            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            transition={{ duration: 0.8, ease: BREATH_EASE }}
-            className="text-2xl font-normal text-cosmic-gold tracking-tight text-center"
-          >
-            {value}
-          </motion.div>
+        <div className="z-10 flex flex-col items-center px-4 w-full">
+          {isEditing ? (
+            <input
+              autoFocus
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onBlur={handleInputBlur}
+              onKeyDown={handleKeyDown}
+              className="bg-transparent border-none outline-none text-2xl font-normal text-cosmic-gold tracking-tight text-center w-full focus:ring-0"
+            />
+          ) : (
+            <motion.div 
+              key={value}
+              initial={{ opacity: 0, scale: 0.9, filter: 'blur(5px)' }}
+              animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+              transition={{ duration: 0.8, ease: BREATH_EASE }}
+              className={`text-2xl font-normal text-cosmic-gold tracking-tight text-center ${onValueChange ? 'cursor-text hover:text-cosmic-gold/80' : ''}`}
+              onClick={handleValueClick}
+            >
+              {value}
+            </motion.div>
+          )}
         </div>
       </div>
 

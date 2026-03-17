@@ -96,24 +96,46 @@ const App: React.FC = () => {
                   value={MONTHS[data.month]} 
                   onNext={() => updateBirthData('month', 1, 11)}
                   onPrev={() => updateBirthData('month', -1, 11)}
+                  onValueChange={(val) => {
+                    const index = MONTHS.findIndex(m => m.toLowerCase().startsWith(val.toLowerCase()));
+                    if (index !== -1) updateBirthData('month', index - data.month, 11);
+                  }}
                 />
                 <AstrolabeDial 
                   label="Day" 
                   value={data.day.toString().padStart(2, '0')} 
                   onNext={() => updateBirthData('day', 1, 31, 1)}
                   onPrev={() => updateBirthData('day', -1, 31, 1)}
+                  onValueChange={(val) => {
+                    const day = parseInt(val);
+                    if (!isNaN(day) && day >= 1 && day <= 31) {
+                      updateBirthData('day', day - data.day, 31, 1);
+                    }
+                  }}
                 />
                 <AstrolabeDial 
                   label="Year" 
                   value={data.year.toString()} 
                   onNext={() => updateYear(-1)}
                   onPrev={() => updateYear(1)}
+                  onValueChange={(val) => {
+                    const year = parseInt(val);
+                    if (!isNaN(year) && YEARS.includes(year)) {
+                      setData(prev => ({ ...prev, year }));
+                    }
+                  }}
                 />
                 <AstrolabeDial 
                   label="Chronos" 
                   value={`${data.hour.toString().padStart(2, '0')}:00`} 
                   onNext={() => updateBirthData('hour', 1, 23)}
                   onPrev={() => updateBirthData('hour', -1, 23)}
+                  onValueChange={(val) => {
+                    const hour = parseInt(val.replace(':00', ''));
+                    if (!isNaN(hour) && hour >= 0 && hour <= 23) {
+                      updateBirthData('hour', hour - data.hour, 23);
+                    }
+                  }}
                 />
               </div>
 
